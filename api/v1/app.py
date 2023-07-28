@@ -1,7 +1,8 @@
+#!/usr/bin/python3
 '''This module setup the application'''
 
 import os
-from flask import Flask
+from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
 
@@ -19,5 +20,14 @@ def teardown_app(exception):
     storage.close()
 
 
+@app.errorhandler(404)
+def not_found(error):
+    """Handles the 404 error"""
+    return jsonify({"error": "Not found"}), 404
+
+
 if __name__ == "__main__":
-     app.run(host=app.config['HOST'], port=app.config['PORT'], threaded=app.config['THREADED'])
+    app.run(
+        host=app.config['HOST'],
+        port=app.config['PORT'],
+        threaded=app.config['THREADED'])
