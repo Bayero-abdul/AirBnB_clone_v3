@@ -54,10 +54,12 @@ def create_state():
     """
     data = request.get_json()
     if not data:
-        return jsonify({"error": "Not a JSON"}), 400
+        abort(400)
+        return jsonify({"error": "Not a JSON"})
 
     if 'name' not in data:
-        return jsonify({"error": "Missing name"}), 400
+        abort(400)
+        return jsonify({"error": "Missing name"})
 
     new_state = State(name=data['name'])
     new_state.save()
@@ -73,7 +75,8 @@ def update_state(state_id):
     """
     data = request.get_json()
     if not data:
-        return jsonify({"error": "Not a JSON"}), 400
+        abort(400)
+        return jsonify({"error": "Not a JSON"})
 
     state = storage.get(State, state_id)
     if state is None:
