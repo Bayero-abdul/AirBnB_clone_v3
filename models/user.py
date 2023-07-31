@@ -31,7 +31,7 @@ class User(BaseModel, Base):
         if kwargs.get('password'):
             # Hash the password when creating or updating the User
             self.password = hashlib.md5(kwargs['password'].encode())\
-                            .hexdigest()
+                .hexdigest()
 
     def save(self):
         # Hash the password before saving (creating or updating) the User

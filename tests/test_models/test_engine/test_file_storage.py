@@ -79,7 +79,7 @@ class TestFileStorage(unittest.TestCase):
     def tearDown(self):
         """"Tears down the storage"""
         try:
-            #os.remove('file.json')
+            # os.remove('file.json')
             pass
         except FileNotFoundError:
             pass
