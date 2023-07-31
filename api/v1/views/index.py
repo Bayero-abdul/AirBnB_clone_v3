@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""This module creates an endpoint that retrieves \
+"""
+This module creates an endpoint that retrieves
 the number of each objects by type
 """
 from models import storage
@@ -15,14 +16,18 @@ from models.user import User
 
 @app_views.route('/status', strict_slashes=False)
 def status():
-    '''Return the status of your API'''
+    """
+    Return the status of your API
+    """
     status = {"status": "OK"}
     return jsonify(status)
 
 
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def stats():
-    '''return dict count of data'''
+    """
+    return dict count of data
+    """
     stats = {"amenities": storage.count(Amenity),
              "cities": storage.count(City),
              "places": storage.count(Place),
