@@ -27,14 +27,7 @@ class User(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         """initializes user"""
-        super().__init__(*args, **kwargs)
-        if kwargs.get('password'):
-            # Hash the password when creating or updating the User
+        if 'password' in kwargs:
             self.password = hashlib.md5(kwargs['password'].encode())\
                 .hexdigest()
-
-    def save(self):
-        # Hash the password before saving (creating or updating) the User
-        if self.password:
-            self.password = hashlib.md5(self.password.encode()).hexdigest()
-        super().save()
+        super().__init__(*args, **kwargs)
